@@ -14,9 +14,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const telegraf_1 = __importDefault(require("telegraf"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const bot = new telegraf_1.default(process.env.PORT);
-bot.telegram.setWebhook("https://21b55742.ngrok.io");
-bot.startWebhook("/", null, 5001);
+const PORT = parseInt(process.env.PORT, 10);
+const bot = new telegraf_1.default(process.env.TOKEN);
+try {
+    bot.telegram.setWebhook("https://21b55742.ngrok.io");
+    bot.startWebhook("/", null, PORT);
+}
+catch (err) {
+    console.log(err);
+}
 bot.start((ctx) => __awaiter(this, void 0, void 0, function* () {
     try {
         yield ctx.reply("Welcome");

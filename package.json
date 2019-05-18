@@ -15,7 +15,7 @@
     "winston-telegram": "^2.0.1"
   },
   "scripts": {
-    "live": "nodemon --inspect './src/**/*.ts' --exec 'yarn build && cross-env NODE_ENV=development node ./dist/index.js'",
+    "live": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts",
     "start": "node ./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production forever start --uid=worksuite-api --append dist/index.js",
     "stop": "forever stop worksuite-api",
     "build": "tsc -p ./tsconfig.json",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
-    "@types/node-telegram-bot-api": "^0.31.0"
+    "@types/node-telegram-bot-api": "^0.31.0",
+    "ts-node": "^8.1.0"
   }
 }
