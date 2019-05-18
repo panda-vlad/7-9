@@ -1,0 +1,29 @@
+{
+  "name": "anticafe79",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "dotenv": "^8.0.0",
+    "forever": "^1.0.0",
+    "moment": "^2.24.0",
+    "node-telegram-bot-api": "^0.30.0",
+    "telegraf": "^3.29.0",
+    "typescript": "^3.4.5",
+    "winston": "^3.2.1",
+    "winston-telegram": "^2.0.1"
+  },
+  "scripts": {
+    "live": "nodemon --inspect './src/**/*.ts' --exec 'yarn build && cross-env NODE_ENV=development node ./dist/index.js'",
+    "start": "node ./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production forever start --uid=worksuite-api --append dist/index.js",
+    "stop": "forever stop worksuite-api",
+    "build": "tsc -p ./tsconfig.json",
+    "clean": "rimraf ./dist",
+    "refresh": "npm run clean && npm run start:dev"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/node-telegram-bot-api": "^0.31.0"
+  }
+}
